@@ -20,6 +20,6 @@ svg {
   color: var(--quarto);
   font-size: 1.5rem;
   font-family: "Rubik", sans-serif;
-  text-decoration: none;
+  text-decoration:underline;
   margin-left: auto; 
 }

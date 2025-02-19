@@ -1,0 +1,21 @@
+.footer {
+  background-color: var(--primario);
+  color: var(--quarto);
+  text-align: center;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.social-icons {
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  margin: 0 0.5rem;
+  color: var(--quarto);
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: var(--secundario);
+}
