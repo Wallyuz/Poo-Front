@@ -4,6 +4,8 @@
   text-align: center;
   padding: 0.5rem;
   width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .social-icons {
@@ -18,4 +20,15 @@
 
 .social-icons a:hover {
   color: var(--secundario);
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    margin-top: 1rem;
+  }
+  .footer {
+    margin-top: 6rem;
+    padding: 2rem;
+    position: relative;
+  }
 }

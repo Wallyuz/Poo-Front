@@ -9,6 +9,7 @@
 .containerLogin {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 svg {
@@ -20,6 +21,22 @@ svg {
   color: var(--quarto);
   font-size: 1.5rem;
   font-family: "Rubik", sans-serif;
-  text-decoration:underline;
-  margin-left: auto; 
+  text-decoration: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .containerLogin {
+    flex-direction:row;
+    align-items: center;
+  }
+
+  .Login {
+    font-size: 1.2rem;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
 }
