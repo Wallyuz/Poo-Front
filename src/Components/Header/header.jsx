@@ -23,7 +23,7 @@ export default function Header() {
                             </g>
                         </g>
                     </svg>
-                    <a href="" className="Login">Login</a>
+                    <Link to="/login" className="Login">Login</Link>
                 </div>
             </header>
         </>
