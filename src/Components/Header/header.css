@@ -17,17 +17,24 @@ svg {
   height: 40px;
 }
 
+.links {
+  display: flex;
+  align-items: center;
+}
+
 .Login {
   color: var(--quarto);
   font-size: 1.5rem;
   font-family: "Rubik", sans-serif;
   text-decoration: none;
+  margin-left: 0.5rem; /* Adicionando margem esquerda */
+  margin-right: 0.5rem; /* Adicionando margem direita */
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .containerLogin {
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
   }
 

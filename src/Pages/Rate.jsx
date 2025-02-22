@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../Components/Header/header';
 import Footer from '../Components/Footer/footer';
-import './HomeStyle.css'; // Importando o estilo da página
+import './HomeStyle.css'; 
 
 function Rate() {
   const [rating, setRating] = useState(0);
