@@ -13,9 +13,8 @@ import ServiceDis from '../Pages/ServiceDis';
 import Conta from '../Pages/Conta';
 import RegisterDoc from '../Pages/RegisterDoc';
 import AccountDetailsPage from '../Pages/AccountDetailsPage';
-import Register from '../Components/Register/Register';
 import Login from '../Components/Login/Login';
-import Header from '../Components/Header/Header';
+import Header from '../Components/Header/header';
 
 function AppRoutes() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,7 +42,7 @@ function AppRoutes() {
         <Route path="/ServiceDis" element={<ServiceDis />} />
         <Route path="/Conta" element={<Conta />} />
         <Route path="/RegisterDoc" element={<RegisterDoc />} />
-        <Route path="/account-details" element={<AccountDetailsPage />} />
+        <Route path="/account-details" element={<AccountDetailsPage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
