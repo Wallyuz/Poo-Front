@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "../Pages/Home";
 import About from '../Pages/About';
-import LoginPage from '../Pages/Login';
 import Rate from '../Pages/Rate';
 import RegisterPage from '../Pages/RegisterPage';
 import ServiceMarc from '../Pages/ServiceMarc';
@@ -42,7 +41,7 @@ function AppRoutes() {
         <Route path="/ServiceDis" element={<ServiceDis />} />
         <Route path="/Conta" element={<Conta />} />
         <Route path="/RegisterDoc" element={<RegisterDoc />} />
-        <Route path="/account-details" element={<AccountDetailsPage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
+        <Route path="/account-details/:id" element={<AccountDetailsPage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

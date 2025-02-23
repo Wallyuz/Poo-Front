@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 
-export default function Header({ isLoggedIn, onLogout }) {
+export default function Header({ isLoggedIn, onLogout, userId }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -36,7 +36,7 @@ export default function Header({ isLoggedIn, onLogout }) {
         <div className={`links ${menuOpen ? 'open' : ''}`}>
           {isLoggedIn ? (
             <>
-              <Link to="/account-details" className="Login">Minha Conta</Link>
+              <Link to={`/account-details/${userId}`} className="Login">Minha Conta</Link>
               <button onClick={onLogout} className="Login">Logout</button>
             </>
           ) : (
