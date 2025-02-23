@@ -5,15 +5,19 @@ import './login.css';
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(''); // Novo estado para mensagem de feedback
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login bem-sucedido!');
-    console.log('Email:', email);
-    console.log('Password:', password);
-    onLogin();
-    navigate('/account-details'); // Redirecionar para a página de detalhes da conta após o login
+    // Simulação de login bem-sucedido
+    if (email === 'test@example.com' && password === 'password') {
+      setMessage('Login bem-sucedido!');
+      onLogin();
+      navigate('/account-details');
+    } else {
+      setMessage('Email ou senha incorretos!');
+    }
   };
 
   return (
@@ -42,6 +46,7 @@ function Login({ onLogin }) {
         </div>
         <button type="submit">Login</button>
       </form>
+      {message && <p>{message}</p>} {/* Exibe a mensagem de feedback */}
       <div className="register-link">
         <p>Não tem uma conta? <Link to="/register">Registre-se aqui</Link></p>
       </div>

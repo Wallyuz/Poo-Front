@@ -7,21 +7,22 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [age, setAge] = useState(''); // Novo estado para idade
+  const [age, setAge] = useState('');
+  const [message, setMessage] = useState(''); // Novo estado para mensagem de feedback
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted'); // Log para verificar se a função está sendo chamada
     if (password !== confirmPassword) {
-      alert('As senhas não coincidem!');
+      setMessage('As senhas não coincidem!');
       return;
     }
+    // Simulação de registro bem-sucedido
+    setMessage('Registro bem-sucedido!');
     console.log('Cadastro criado');
-    console.log('Registro bem-sucedido!');
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
-    console.log('Age:', age); // Log para idade
+    console.log('Age:', age);
   };
 
   return (
@@ -80,6 +81,7 @@ function Register() {
         </div>
         <button type="submit">Registrar</button>
       </form>
+      {message && <p>{message}</p>} {/* Exibe a mensagem de feedback */}
       <div className="doctor-register-link">
         <p>É médico? <Link to="/RegisterDoc">Clique aqui para registrar</Link></p>
       </div>
