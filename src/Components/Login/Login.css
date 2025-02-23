@@ -7,6 +7,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.login-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primario);
+}
+
 .login-title {
   text-align: center;
   font-size: 2rem;
@@ -48,4 +55,8 @@
 
 .login-button:hover {
   background-color: var(--secundario);
+}
+.register-link p{
+  padding-top: 3rem;
+  text-align: center;
 }
