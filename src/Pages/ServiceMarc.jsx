@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header/header';
 import Footer from '../Components/Footer/footer';
 import './ServiceMarc.css';
 
 function ServiceMarc() {
+  const [doctors, setDoctors] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const navigate = useNavigate();
 
-  const doctors = [
-    { name: 'Dr. João Silva', times: ['09:00', '10:00', '11:00'] },
-    { name: 'Dra. Maria Oliveira', times: ['13:00', '14:00', '15:00'] },
-    { name: 'Dr. Pedro Santos', times: ['16:00', '17:00', '18:00'] },
-  ];
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch('https://67ba9813fbe0387ca137a638.mockapi.io/medicos');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        // Dividir a string de horários em um array de horários e remover elementos vazios
+        const doctorsWithTimes = data.map(doctor => ({
+          ...doctor,
+          times: doctor.schedule.split(' ').filter(time => time)
+        }));
+        setDoctors(doctorsWithTimes);
+      } catch (error) {
+        console.error('Erro ao buscar médicos:', error);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
 
   const handleDoctorSelect = (doctor) => {
     setSelectedDoctor(doctor);
@@ -25,21 +42,48 @@ function ServiceMarc() {
   };
 
   const handleConfirm = () => {
+    if (!selectedDoctor || !selectedTime) {
+      return;
+    }
+
     // Lógica para confirmar a consulta
     const confirmedAppointment = {
+      id: new Date().getTime(), // Gerar um ID único para a consulta
       doctor: selectedDoctor.name,
       time: selectedTime,
+      confirmed: false,
     };
 
-    // Simulação de salvamento da consulta confirmada
+    // Salvar a consulta confirmada no localStorage
+    const existingAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    existingAppointments.push(confirmedAppointment);
+    localStorage.setItem('appointments', JSON.stringify(existingAppointments));
+
     console.log('Consulta confirmada:', confirmedAppointment);
+
+    // Remover o horário marcado da lista de horários disponíveis
+    const updatedDoctors = doctors.map(doctor => {
+      if (doctor.id === selectedDoctor.id) {
+        const updatedTimes = doctor.times.filter(time => time !== selectedTime);
+        console.log(`Atualizando horários para o médico ${doctor.name}:`, updatedTimes);
+        return {
+          ...doctor,
+          times: updatedTimes
+        };
+      }
+      return doctor;
+    });
+
+    setDoctors(updatedDoctors);
+    setSelectedDoctor(null);
+    setSelectedTime(null);
 
     navigate('/ServiceDis');
   };
 
   return (
     <div className="App">
-      {/* <Header /> */}
+{/*                   <Header /> */}
       <div className="container">
         <h1 className="Title">Serviço de Marcar Consultas</h1>
         <div className="doctor-list">

@@ -12,7 +12,10 @@ import ServiceDis from '../Pages/ServiceDis';
 import Conta from '../Pages/Conta';
 import RegisterDoc from '../Pages/RegisterDoc';
 import AccountDetailsPage from '../Pages/AccountDetailsPage';
+import ScheduleAppointment from '../Pages/ScheduleAppointment';
 import Login from '../Components/Login/Login';
+import DoctorLogin from '../Components/DoctorLogin/DoctorLogin';
+import RegisterDoctor from '../Components/RegisterDoctor/RegisterDoctor';
 import Header from '../Components/Header/header';
 
 function AppRoutes() {
@@ -36,8 +39,10 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/doctor-login" element={<DoctorLogin onLogin={handleLogin} />} />
         <Route path="/rate" element={<Rate />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register-doctor" element={<RegisterDoctor />} />
         <Route path="/ServiceMarc" element={<ServiceMarc />} />
         <Route path="/DetailsPage" element={<DetailsPage />} />
         <Route path="/ServiceRedirect" element={<ServiceRedirect />} />
@@ -45,6 +50,7 @@ function AppRoutes() {
         <Route path="/Conta" element={<Conta />} />
         <Route path="/RegisterDoc" element={<RegisterDoc />} />
         <Route path="/account-details/:id" element={<AccountDetailsPage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
+        <Route path="/schedule-appointment" element={<ScheduleAppointment userId={userId} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

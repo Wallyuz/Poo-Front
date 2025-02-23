@@ -2,27 +2,49 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './register.css';
 
-function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [age, setAge] = useState('');
-  const [message, setMessage] = useState(''); // Novo estado para mensagem de feedback
+const Register = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    age: ''
+  });
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       setMessage('As senhas não coincidem!');
       return;
     }
-    // Simulação de registro bem-sucedido
-    setMessage('Registro bem-sucedido!');
-    console.log('Cadastro criado');
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Age:', age);
+
+    try {
+      const response = await fetch('https://67ba9813fbe0387ca137a638.mockapi.io/cadastro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setMessage('Registro bem-sucedido!');
+      console.log('Dados do usuário registrado:', data);
+    } catch (error) {
+      console.error('Erro ao registrar:', error);
+      setMessage('Erro ao registrar.');
+    }
   };
 
   return (
@@ -34,8 +56,9 @@ function Register() {
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             required
           />
         </div>
@@ -44,8 +67,9 @@ function Register() {
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
         </div>
@@ -54,8 +78,9 @@ function Register() {
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
         </div>
@@ -64,8 +89,9 @@ function Register() {
           <input
             type="password"
             id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
             required
           />
         </div>
@@ -74,19 +100,20 @@ function Register() {
           <input
             type="number"
             id="age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
+            name="age"
+            value={formData.age}
+            onChange={handleChange}
             required
           />
         </div>
         <button type="submit">Registrar</button>
       </form>
-      {message && <p>{message}</p>} {/* Exibe a mensagem de feedback */}
+      {message && <p>{message}</p>}
       <div className="doctor-register-link">
         <p>É médico? <Link to="/RegisterDoc">Clique aqui para registrar</Link></p>
       </div>
     </div>
   );
-}
+};
 
 export default Register;

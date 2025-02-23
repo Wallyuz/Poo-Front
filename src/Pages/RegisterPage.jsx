@@ -6,7 +6,7 @@ import Register from '../Components/Register/Register';
 function RegisterPage() {
   return (
     <>
-      {/* <Header /> */}
+      
       <div className="App">
         <Register />
       </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './login.css';
+import '../Login/Login.css';
 
-function Login({ onLogin }) {
+function DoctorLogin({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -12,18 +12,18 @@ function Login({ onLogin }) {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://67ba9813fbe0387ca137a638.mockapi.io/cadastro');
+      const response = await fetch('https://67ba9813fbe0387ca137a638.mockapi.io/medicos');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
-      const users = await response.json();
-      const user = users.find(user => user.email === email && user.password === password);
+      const doctors = await response.json();
+      const doctor = doctors.find(doctor => doctor.email === email && doctor.password === password);
 
-      if (user) {
+      if (doctor) {
         setMessage('Login bem-sucedido!');
-        onLogin(user.id);
-        navigate(`/account-details/${user.id}`);
+        onLogin(doctor.id);
+        navigate(`/doctor-details/${doctor.id}`);
       } else {
         setMessage('Email ou senha incorretos!');
       }
@@ -35,7 +35,7 @@ function Login({ onLogin }) {
 
   return (
     <div className="login-container">
-      <h1>Login</h1>
+      <h1>Login Médico</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
@@ -61,10 +61,10 @@ function Login({ onLogin }) {
       </form>
       {message && <p>{message}</p>}
       <div className="register-link">
-        <p>Não tem uma conta? <Link to="/register">Registre-se aqui</Link></p>
+        <p>Não tem uma conta? <Link to="/register-doctor">Registre-se aqui</Link></p>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default DoctorLogin;
