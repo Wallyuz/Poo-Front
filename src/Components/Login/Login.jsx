@@ -5,12 +5,11 @@ import './login.css';
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(''); // Novo estado para mensagem de feedback
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulação de login bem-sucedido
     if (email === 'test@example.com' && password === 'password') {
       setMessage('Login bem-sucedido!');
       onLogin();
@@ -46,7 +45,7 @@ function Login({ onLogin }) {
         </div>
         <button type="submit">Login</button>
       </form>
-      {message && <p>{message}</p>} {/* Exibe a mensagem de feedback */}
+      {message && <p>{message}</p>}
       <div className="register-link">
         <p>Não tem uma conta? <Link to="/register">Registre-se aqui</Link></p>
       </div>

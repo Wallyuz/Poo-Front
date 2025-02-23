@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "../Pages/Home";
 import About from '../Pages/About';
@@ -15,14 +15,26 @@ import RegisterDoc from '../Pages/RegisterDoc';
 import AccountDetailsPage from '../Pages/AccountDetailsPage';
 import Register from '../Components/Register/Register';
 import Login from '../Components/Login/Login';
+import Header from '../Components/Header/Header';
 
-function AppRoutes({ onLogin }) {
+function AppRoutes() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <Router>
+      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<LoginPage onLogin={onLogin} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/rate" element={<Rate />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/ServiceMarc" element={<ServiceMarc />} />

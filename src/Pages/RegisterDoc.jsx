@@ -6,7 +6,7 @@ import RegisterDoctor from '../Components/RegisterDoctor/RegisterDoctor';
 export default function RegisterDoc() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <RegisterDoctor />
       <Footer />
     </div>

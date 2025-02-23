@@ -39,7 +39,7 @@ function ServiceMarc() {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="container">
         <h1 className="Title">Serviço de Marcar Consultas</h1>
         <div className="doctor-list">

@@ -6,7 +6,7 @@ import Footer from '../Components/Footer/footer';
 function Home() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="container">
         <h1 className="Title">Bem-vindo à Nossa Clínica Hospitalar</h1>
         <img 

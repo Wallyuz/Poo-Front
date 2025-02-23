@@ -6,7 +6,7 @@ import Footer from '../Components/Footer/footer';
 function LoginPage() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
         <Login />
       <Footer />
     </>

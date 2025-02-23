@@ -19,7 +19,7 @@ function Conta() {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="container">
         <h1>Conta</h1>
         <p>O valor da sua consulta é: R$ {consultaValor}</p>

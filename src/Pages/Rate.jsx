@@ -24,7 +24,7 @@ function Rate() {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="container">
         <h1 className="Title">Avalie o Atendimento</h1>
         <form onSubmit={handleSubmit}>

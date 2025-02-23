@@ -6,7 +6,7 @@ import FilterGroup from "../Components/FilterGroup/FilterGroup";
 export default function ServiceRedirect(){
     return(
         <>
-        <Header />
+        {/* <Header /> */}
         <FilterGroup/>
         <Footer />
 

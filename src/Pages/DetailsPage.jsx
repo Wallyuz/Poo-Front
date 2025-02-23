@@ -6,7 +6,7 @@ import Details from "../Components/Details/Details";
 function DetailsPage() {
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <Details />
             <Footer />
         </>

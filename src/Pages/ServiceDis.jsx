@@ -26,7 +26,7 @@ function ServiceDis() {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="container-dis">
         <h1 className="Title">Consultas Marcadas</h1>
         <div className="consulta-list">

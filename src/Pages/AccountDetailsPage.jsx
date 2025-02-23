@@ -22,7 +22,7 @@ function AccountDetailsPage() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="account-details-page">
         <AccountDetails user={user} onSave={handleSave} />
       </div>
