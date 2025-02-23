@@ -17,6 +17,7 @@ import Login from '../Components/Login/Login';
 import DoctorLogin from '../Components/DoctorLogin/DoctorLogin';
 import RegisterDoctor from '../Components/RegisterDoctor/RegisterDoctor';
 import Header from '../Components/Header/header';
+import DoctorEditPage from '../Pages/DoctorEditPage'; // Importar o componente
 
 function AppRoutes() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -51,6 +52,7 @@ function AppRoutes() {
         <Route path="/RegisterDoc" element={<RegisterDoc />} />
         <Route path="/account-details/:id" element={<AccountDetailsPage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
         <Route path="/schedule-appointment" element={<ScheduleAppointment userId={userId} />} />
+        <Route path="/doctor/:doctorId" element={<DoctorEditPage />} /> 
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

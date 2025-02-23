@@ -18,7 +18,6 @@ function ServiceMarc() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        // Dividir a string de horários em um array de horários e remover elementos vazios
         const doctorsWithTimes = data.map(doctor => ({
           ...doctor,
           times: doctor.schedule.split(' ').filter(time => time)
@@ -34,48 +33,62 @@ function ServiceMarc() {
 
   const handleDoctorSelect = (doctor) => {
     setSelectedDoctor(doctor);
-    setSelectedTime(null); // Reset selected time when doctor changes
+    setSelectedTime(null);
   };
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!selectedDoctor || !selectedTime) {
       return;
     }
 
-    // Lógica para confirmar a consulta
     const confirmedAppointment = {
-      id: new Date().getTime(), // Gerar um ID único para a consulta
+      id: new Date().getTime(),
       doctor: selectedDoctor.name,
       time: selectedTime,
       confirmed: false,
     };
 
-    // Salvar a consulta confirmada no localStorage
     const existingAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
     existingAppointments.push(confirmedAppointment);
     localStorage.setItem('appointments', JSON.stringify(existingAppointments));
 
     console.log('Consulta confirmada:', confirmedAppointment);
 
-    // Remover o horário marcado da lista de horários disponíveis
+    // Remover o horário marcado da lista de horários disponíveis na API
+    const updatedTimes = selectedDoctor.times.filter(time => time !== selectedTime);
+    try {
+      const response = await fetch(`https://67ba9813fbe0387ca137a638.mockapi.io/medicos/${selectedDoctor.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ schedule: updatedTimes.join(' ') }),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      console.log(`Horário ${selectedTime} removido da API para o médico ${selectedDoctor.name}`);
+    } catch (error) {
+      console.error('Erro ao atualizar horários na API:', error);
+    }
+
+    // Atualizar o estado local
     const updatedDoctors = doctors.map(doctor => {
       if (doctor.id === selectedDoctor.id) {
-        const updatedTimes = doctor.times.filter(time => time !== selectedTime);
-        console.log(`Atualizando horários para o médico ${doctor.name}:`, updatedTimes);
-        return {
-          ...doctor,
-          times: updatedTimes
-        };
+        return { ...doctor, times: updatedTimes };
       }
       return doctor;
     });
 
     setDoctors(updatedDoctors);
-    setSelectedDoctor(null);
+
+    // Atualizar o médico selecionado com os horários atualizados
+    const updatedDoctor = updatedDoctors.find(doc => doc.id === selectedDoctor.id);
+    setSelectedDoctor(updatedDoctor ? { ...updatedDoctor } : null);
     setSelectedTime(null);
 
     navigate('/ServiceDis');
@@ -83,8 +96,7 @@ function ServiceMarc() {
 
   return (
     <div className="App">
-{/*                   <Header /> */}
-      <div className="container">
+            <div className="container">
         <h1 className="Title">Serviço de Marcar Consultas</h1>
         <div className="doctor-list">
           <h2>Médicos Disponíveis</h2>
