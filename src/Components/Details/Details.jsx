@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Details.css'; // Certifique-se de que o arquivo CSS está importado
+import './Details.css'; 
 
 function Details({ details }) {
     const [detailState, setDetailState] = useState(details);
