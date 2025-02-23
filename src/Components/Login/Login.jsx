@@ -13,8 +13,8 @@ function Login({ onLogin }) {
     // Simulação de autenticação
     if (email === 'test@example.com' && password === 'password') {
       setMessage('Login bem-sucedido!');
-      onLogin();
       const userId = 1; // Substitua pelo ID real do usuário após a autenticação
+      onLogin(userId);
       navigate(`/account-details/${userId}`);
     } else {
       setMessage('Email ou senha incorretos!');

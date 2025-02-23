@@ -17,18 +17,21 @@ import Header from '../Components/Header/header';
 
 function AppRoutes() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
 
-  const handleLogin = () => {
+  const handleLogin = (id) => {
     setIsLoggedIn(true);
+    setUserId(id);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setUserId(null);
   };
 
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} userId={userId} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
