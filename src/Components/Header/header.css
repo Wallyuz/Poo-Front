@@ -6,6 +6,28 @@
   color: var(--quarto);
 }
 
+.header .hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.header .links {
+    display: flex;
+    gap: 10px;
+}
+
+.header .links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajuste conforme necessário */
+    right: 10px; /* Ajuste conforme necessário */
+    background-color: white; /* Ajuste conforme necessário */
+    border: 1px solid #ccc; /* Ajuste conforme necessário */
+    padding: 10px; /* Ajuste conforme necessário */
+}
+
 .containerLogin {
   display: flex;
   align-items: center;
@@ -20,7 +42,22 @@ svg {
 .links {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
+
+.links a {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.links a:hover {
+    background-color: #f0f0f0;
+}
+
+
 
 .Login {
   color: var(--quarto);
@@ -45,5 +82,17 @@ svg {
   svg {
     width: 30px;
     height: 30px;
+  }
+
+  .header .hamburger {
+    display: block;
+  }
+
+  .header .links {
+    display: none;
+  }
+
+  .header .links.open {
+    display: flex;
   }
 }

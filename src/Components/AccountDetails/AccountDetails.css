@@ -1,0 +1,55 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-bottom: 8rem;
+  }
+  
+  .container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .doctor-details, .patient-details {
+    margin-top: 1rem;
+  }
+  
+  .doctor-details h2, .patient-details h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .doctor-details p, .patient-details p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+.account-details-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: 10rem;
+}
+
+.account-details-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.doctor-details, .patient-details {
+  margin-top: 1rem;
+}
+
+.doctor-details h2, .patient-details h2 {
+  margin-bottom: 1rem;
+}
+
+.doctor-details p, .patient-details p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}

@@ -1,14 +1,19 @@
-import "./header.css";
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import './header.css';
 
-export default function Header() {
-    return (
-        <>
-            <header className="header">
-                <div className="containerLogin">
-                    <Link to="/">
-                        <svg viewBox="-1.8 -1.8 23.60 23.60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="" transform="rotate(0)" stroke="">
+export default function Header({ isLoggedIn, onLogout }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  return (
+    <header className="header">
+      <div className="containerLogin">
+        <Link to="/">
+        <svg viewBox="-1.8 -1.8 23.60 23.60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="" transform="rotate(0)" stroke="">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.04"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -24,13 +29,25 @@ export default function Header() {
                                 </g>
                             </g>
                         </svg>
-                    </Link>
-                    <div className="links">
-                        <Link to="/login" className="Login">Login</Link>
-                        <Link to="/register" className="Login">Registrar</Link>
-                    </div>
-                </div>
-            </header>
-        </>
-    );
+        </Link>
+        <div className="hamburger" onClick={toggleMenu}>
+          &#9776;
+        </div>
+        <div className={`links ${menuOpen ? 'open' : ''}`}>
+          {isLoggedIn ? (
+            <>
+              <Link to="/account-details" className="Login">Minha Conta</Link>
+              <button onClick={onLogout} className="Login">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="Login">Login</Link>
+              <Link to="/register" className="Login">Registrar</Link>
+            </>
+          )}
+          <Link to="/ServiceRedirect" className="Login">Serviços</Link>
+        </div>
+      </div>
+    </header>
+  );
 }

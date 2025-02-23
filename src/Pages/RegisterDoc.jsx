@@ -1,18 +1,14 @@
 import React from 'react';
-import Register from '../Components/Register/Register';
 import Header from '../Components/Header/header';
 import Footer from '../Components/Footer/footer';
+import RegisterDoctor from '../Components/RegisterDoctor/RegisterDoctor';
 
-function RegisterPage() {
+export default function RegisterDoc() {
   return (
-    <>
-    <Header />
     <div className="App">
-      <Register />
+      <Header />
+      <RegisterDoctor />
+      <Footer />
     </div>
-    <Footer />
-    </>
   );
 }
-
-export default RegisterPage;
